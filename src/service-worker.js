@@ -70,3 +70,15 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+
+async function askUserPermission () {
+  return await Notification.requestPermission();
+}
+
+async function createNotificationSubscription () {
+  const serviceWorker = await navigator.serviceWorker.ready;
+  return serviceWorker.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: 'BIN2Jc5Vmkmy-S3AUrcMlpKxJpLeVRAfu9WBqUbJ70SJOCWGCGXKY-Xzyh7HDr6KbRDGYHjqZ06OcS3BjD7uAm8',
+  })
+}
